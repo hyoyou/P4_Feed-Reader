@@ -31,12 +31,20 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
+        it('should have a URL in each feed', function() {
+            function checkUrl(feed) {
+                return !!feed.url
+            }
+
+            expect(allFeeds.every(feed => checkUrl(feed))).toBe(true);
+        });
 
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+
     });
 
 
