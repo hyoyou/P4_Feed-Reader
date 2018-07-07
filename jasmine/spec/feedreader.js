@@ -33,8 +33,8 @@ $(function() {
          */
         it('should have a URL in each feed', function() {
             function checkUrl(feed) {
-                return !!feed.url
-            }
+                return !!feed.url;
+            };
 
             /* Run each feed through checkUrl function 
             to check that URL is defined and not empty
@@ -49,8 +49,8 @@ $(function() {
          */
         it('should have a name in each feed', function() {
             function checkName(feed) {
-                return !!feed.name
-            }
+                return !!feed.name;
+            };
 
             /* Run each feed through checkName function 
             to check that name is defined and not empty
@@ -83,7 +83,7 @@ $(function() {
         * clicked and does it hide when clicked again.
         */
         it('should toggle when clicked', function() {
-            menuIcon = $('.menu-icon-link')
+            menuIcon = $('.menu-icon-link');
 
             // Click on menu once to toggle and show
             menuIcon.click();
@@ -93,7 +93,7 @@ $(function() {
             secondClick = $('body').hasClass('menu-hidden');
 
             expect(firstClick).toBe(false);
-            expect(secondClick).toBe(true)
+            expect(secondClick).toBe(true);
         });
     });
 
@@ -112,9 +112,8 @@ $(function() {
         });
 
         // Grab all .entry who are children of .feed and check that length > 1
-        it('ensure at least single entry element within feed container', function(done) {
-           expect($('.feed .entry').length).toBeGreaterThan(1);
-           done();
+        it('ensure at least single entry element within feed container', function() {
+           expect($('.feed .entry').length).toBeGreaterThan(0);
         });
     });
     
@@ -130,19 +129,17 @@ $(function() {
             // Load Udacity feed and save entries
             loadFeed(0, function() {
                 udacityFeed = $('.feed .entry').text();
+                // Load CSS Tricks feed and save entries after first callback finishes
+                loadFeed(1, function() {
+                    cssFeed = $('.feed .entry').text();
+                    done();
+                });
             });
-
-            // Load CSS Tricks feed and save entries
-            loadFeed(1, function() {
-                cssFeed = $('.feed .entry').text();
-                done();
-            })
         });
 
         // Compare the two entries to make sure they are different
-        it('should change content', function(done) {
+        it('should change content', function() {
             expect(udacityFeed).not.toEqual(cssFeed);
-            done();
         });
     });
 }());
