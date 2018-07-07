@@ -102,17 +102,34 @@ $(function() {
             });
         });
 
-        it('ensures single entry element within feed container', function(done) {
+        it('ensure at least single entry element within feed container', function(done) {
            expect($('.feed .entry').length).toBeGreaterThan(1);
            done();
         });
     });
     
     /* TODO: Write a new test suite named "New Feed Selection" */
-    
+    describe('New Feed Selection', function() {
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-    
+        let udacityFeed, cssFeed;
+
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                udacityFeed = $('.feed .entry').text();
+            });
+
+            loadFeed(1, function() {
+                cssFeed = $('.feed .entry').text();
+                done();
+            })
+        });
+
+        it('should change content', function(done) {
+            expect(udacityFeed).not.toEqual(cssFeed);
+            done();
+        });
+    });
 }());
