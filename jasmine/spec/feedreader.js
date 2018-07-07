@@ -27,7 +27,7 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
+        /* A test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
@@ -36,11 +36,14 @@ $(function() {
                 return !!feed.url
             }
 
+            /* Run each feed through checkUrl function 
+            to check that URL is defined and not empty
+            */
             expect(allFeeds.every(feed => checkUrl(feed))).toBe(true);
         });
 
 
-        /* TODO: Write a test that loops through each feed
+        /* A test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
@@ -49,28 +52,32 @@ $(function() {
                 return !!feed.name
             }
 
+            /* Run each feed through checkName function 
+            to check that name is defined and not empty
+            */
             expect(allFeeds.every(feed => checkName(feed))).toBe(true);
         });
     });
 
 
-    /* TODO: Write a new test suite named "The Menu" */
+    /* A new test suite named "The Menu" */
     describe('The Menu', function() {
         let menu, menuIcon, firstClick, secondClick;
 
-        /* TODO: Write a test that ensures the menu element is
+        /* A test that ensures the menu element is
         * hidden by default. You'll have to analyze the HTML and
         * the CSS to determine how we're performing the
         * hiding/showing of the menu element.
         */
         it('should hide by default', function() {
+            // Check for class that hides menu
             menu = $('body').hasClass('menu-hidden');
 
             expect(menu).toBe(true);
         });
        
        
-        /* TODO: Write a test that ensures the menu changes
+        /* A test that ensures the menu changes
         * visibility when the menu icon is clicked. This test
         * should have two expectations: does the menu display when
         * clicked and does it hide when clicked again.
@@ -78,8 +85,10 @@ $(function() {
         it('should toggle when clicked', function() {
             menuIcon = $('.menu-icon-link')
 
+            // Click on menu once to toggle and show
             menuIcon.click();
             firstClick = $('body').hasClass('menu-hidden');
+            // Click on menu again to toggle and hide
             menuIcon.click();
             secondClick = $('body').hasClass('menu-hidden');
 
@@ -88,9 +97,9 @@ $(function() {
         });
     });
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    /* A new test suite named "Initial Entries" */
     describe('Initial Entries', function() {
-        /* TODO: Write a test that ensures when the loadFeed
+        /* A test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
@@ -102,31 +111,35 @@ $(function() {
             });
         });
 
+        // Grab all .entry who are children of .feed and check that length > 1
         it('ensure at least single entry element within feed container', function(done) {
            expect($('.feed .entry').length).toBeGreaterThan(1);
            done();
         });
     });
     
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    /* A new test suite named "New Feed Selection" */
     describe('New Feed Selection', function() {
-        /* TODO: Write a test that ensures when a new feed is loaded
+        /* A test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
         let udacityFeed, cssFeed;
 
         beforeEach(function(done) {
+            // Load Udacity feed and save entries
             loadFeed(0, function() {
                 udacityFeed = $('.feed .entry').text();
             });
 
+            // Load CSS Tricks feed and save entries
             loadFeed(1, function() {
                 cssFeed = $('.feed .entry').text();
                 done();
             })
         });
 
+        // Compare the two entries to make sure they are different
         it('should change content', function(done) {
             expect(udacityFeed).not.toEqual(cssFeed);
             done();
