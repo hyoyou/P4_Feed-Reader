@@ -50,7 +50,7 @@ $(function() {
             }
 
             expect(allFeeds.every(feed => checkName(feed))).toBe(true);
-        })
+        });
     });
 
 
@@ -61,11 +61,11 @@ $(function() {
         * the CSS to determine how we're performing the
         * hiding/showing of the menu element.
         */
-        it('should hide the menu by default', function() {
-            let menuIcon = $('body').hasClass('menu-hidden');
+        it('should hide by default', function() {
+            menu = $('body').hasClass('menu-hidden');
 
-            expect(menuIcon).toBe(true);
-        })
+            expect(menu).toBe(true);
+        });
        
        
         /* TODO: Write a test that ensures the menu changes
@@ -73,7 +73,17 @@ $(function() {
         * should have two expectations: does the menu display when
         * clicked and does it hide when clicked again.
         */
+        it('should toggle when clicked', function() {
+            menuIcon = $('.menu-icon-link')
 
+            menuIcon.click();
+            firstClick = $('body').hasClass('menu-hidden');
+            menuIcon.click();
+            secondClick = $('body').hasClass('menu-hidden');
+
+            expect(firstClick).toBe(false);
+            expect(secondClick).toBe(true)
+        });
     })
 
     /* TODO: Write a new test suite named "Initial Entries" */
