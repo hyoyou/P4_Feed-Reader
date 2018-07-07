@@ -56,6 +56,8 @@ $(function() {
 
     /* TODO: Write a new test suite named "The Menu" */
     describe('The Menu', function() {
+        let menu, menuIcon, firstClick, secondClick;
+
         /* TODO: Write a test that ensures the menu element is
         * hidden by default. You'll have to analyze the HTML and
         * the CSS to determine how we're performing the
@@ -84,21 +86,33 @@ $(function() {
             expect(firstClick).toBe(false);
             expect(secondClick).toBe(true)
         });
-    })
+    });
 
     /* TODO: Write a new test suite named "Initial Entries" */
-
+    describe('Initial Entries', function() {
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                done();
+            });
+        });
 
+        it('ensures single entry element within feed container', function(done) {
+           expect($('.feed .entry').length).toBeGreaterThan(1);
+           done();
+        });
+    });
+    
     /* TODO: Write a new test suite named "New Feed Selection" */
-
+    
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+    
 }());
