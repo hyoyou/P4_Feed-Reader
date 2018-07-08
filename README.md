@@ -9,4 +9,4 @@ Open index.html in browser to open feed reader. You can either copy the path int
 ## Authors
 
 * **Udacity** - *Initial Work* - [Udacity](https://github.com/udacity/frontend-nanodegree-feedreader)
-* **Heather You** - [Heather You](https://github.com/hyoyou/P4_Feed-Reader)
+* **Heather You** - [Heather You](https://github.com/hyoyou/P4_feed-reader)
